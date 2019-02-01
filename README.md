@@ -8,13 +8,6 @@ I'm a guy who hates his postbox, mostly because i continuously keep forgetting t
 Create a small, self-sustaining device which takes a picture every couple of hours or so of the inside of my postbox and sends these images over an REST interface to a small Raspberry pi server, which then twitters the picture, sends an e-mail, or whatever. 
 In the first interation i will take the twitter approach.
 
-```mermaid
-sequenceDiagram
-smartPostbox ->> pyserver: Take a picture
-pyserver ->> twitter: Post picture with timestamp & battery value
-smartPostbox ->> smartPostbox: Sleep some hours and repeat
-```
-
 The problem can be roughly split into the following two areas:
 * The smartPostbox device itself
 * The server
