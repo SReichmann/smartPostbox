@@ -1,0 +1,20 @@
+# Note:
+# If you would like to fork the project and 
+# don't want anybody to read e.g. your credentials, you can use
+# git update-index --skip-worktree pythonRestServer/credentials.json
+# and allow it again with git update-index --no-skip-worktree pythonRestServer/credentials.json
+
+# Specific folders
+######################
+pythonRestServer/pictures/*
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
