@@ -24,7 +24,7 @@ def set_credentials():
 
 @app.route('/time', methods=['GET'])
 def get_time():
-    twitterAPI.update_with_media('test.jpg', datetime.now())
+    twitterAPI.update_with_media('pictures/test.jpg', datetime.now())
     return jsonify({'time': datetime.now()})
 
 @app.route('/picture', methods=['POST'])
