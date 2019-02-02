@@ -1,9 +1,11 @@
 #!flask/bin/python
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from datetime import datetime
 import tweepy
 import os
 import json
+import base64
+import time
 
 app = Flask(__name__)
 twitterAPI = None
@@ -24,14 +26,25 @@ def set_credentials():
 
 @app.route('/time', methods=['GET'])
 def get_time():
-    twitterAPI.update_with_media('pictures/test.jpg', datetime.now())
     return jsonify({'time': datetime.now()})
 
 @app.route('/picture', methods=['POST'])
 def post_picture():
-    # check data
+    # Check data TODO
 
-    # Twitter stuff
+    # Decode to make it usable again
+    dictionary = json.loads(request.data)
+    pictureData = base64.b64decode(dictionary['pictureData'])
+
+    # Write to a file
+    filename = str(time.strftime("%Y:%m:%d_%H:%M:%S"))
+
+    with open("pictures/" + filename + ".jpg", "w") as picture_file:
+            newFileByteArray = bytearray(pictureData)
+            picture_file.write(newFileByteArray)
+
+    # Finally twitter the received picture
+    twitterAPI.update_with_media('pictures/' + filename + '.jpg', filename)
 
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
